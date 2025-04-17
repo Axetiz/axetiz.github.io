@@ -1,0 +1,445 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>{{ user.username }}'s Profile - MathWars</title>
+    <style>
+        :root {
+            --global_main_color: #045174;
+            --global_main_color_btn_text_color: #ffffff;
+            --global_main_color_rgba_02: rgba(4, 81, 116, 0.2);
+            --global_main_color_rgba_07: rgba(4, 81, 116, 0.7);
+            --home_text_color: #ffffff;
+            --home_third_background_color: #000000;
+            --home_text_size_px: 70px;
+            --home_text_size_2_px: 45px;
+            --slogan_text_size_px: 22px;
+            --home_text_size: 70;
+            --home_text_size_2: 45;
+            --slogan_text_size: 22;
+            --home_text_size_px_media: 70px;
+            --home_text_size_2_px_media: 45px;
+            --slogan_text_size_px_media: 22px;
+            --layout_text_align: center;
+            --layout_text_box_width: 100%;
+            --homepage_layout_height_vh: 75vh;
+            --homepage_padding_top: 50px;
+            --homepage_padding_bottom: calc(50px + var(--homepage_layout_height_opacity_space_top) + var(--homepage_layout_height_opacity_space_bottom));
+            --homepage_layout_height_opacity_space_top: 101px;
+            --mainNavHeight: 100px;
+            --scrollHeaderSize: 80px;
+            --menu_font_size: 17px;
+            --menu_pages_space: 3px;
+            --menu_pages_side_padding: 15px;
+            --menu_text_color: #ffffff;
+            --menu_color: #1b262c;
+            --modules_color_text: #000000;
+            --sectionsPadding: 100px;
+            --home_text_top_space_1: 0px;
+            --home_text_bottom_space_1: 16px;
+            --home_text_top_space_2: 0px;
+            --home_text_bottom_space_2: 30px;
+            --c-t-a-buttons-space: 10px;
+            --font-size-clamp: clamp(1rem, 20vw, 5.8rem);
+            --font-size-title: 1.6rem;
+            --home_text_color_rgba_01: rgba(255, 255, 255, 0.1);
+            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --shadow-dark: 0 8px 20px rgba(0, 0, 0, 0.2);
+            --gradient: linear-gradient(135deg, #045174, #1b262c);
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        *:before, *:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 10px;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            font-family: sans-serif;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-size: 14px !important;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: #222;
+            color: var(--modules_color_text);
+            background-color: #cdeefd;
+            -webkit-font-smoothing: antialiased !important;
+            -moz-osx-font-smoothing: grayscale !important;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+            -webkit-text-stroke: 1px transparent;
+            font-size: 14px;
+            line-height: 1.42857143;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: var(--gradient);
+            color: var(--menu_text_color);
+            padding: var(--menu_pages_side_padding);
+            box-shadow: var(--shadow-dark);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        h1 {
+            margin: 20px 0;
+        }
+
+        .logo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .logo {
+            max-height: 50px;
+        }
+
+        .logo-container h1 {
+            font-size: var(--home_text_size_px);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .logo-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 250%;
+        }
+
+        nav {
+            margin-top: 20px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 var(--menu_pages_space);
+        }
+
+        nav ul li a {
+            color: var(--menu_text_color);
+            text-decoration: none;
+            font-size: var(--menu_font_size);
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--global_main_color_rgba_07);
+            border-radius: 5px;
+        }
+
+        main {
+            padding: var(--sectionsPadding);
+            text-align: var(--layout_text_align);
+            background: linear-gradient(to bottom, #cdeefd, #fff);
+        }
+
+        .hero {
+            background: var(--gradient);
+            color: var(--home_text_color);
+            padding: var(--homepage_padding_top) 0 var(--homepage_padding_bottom);
+            box-shadow: var(--shadow-dark);
+            border-radius: 10px;
+            margin-bottom: 40px;
+            animation: slideIn 1s ease-out;
+        }
+
+        .hero h2 {
+            font-size: var(--home_text_size_2_px);
+            margin: 0 0 20px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: var(--slogan_text_size_px);
+            margin: 0 0 20px;
+            opacity: 0.9;
+        }
+
+        section:not(.hero) {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-light);
+            margin-bottom: 40px;
+        }
+
+        section h3 {
+            font-size: var(--home_text_size_2_px);
+            margin: 0 0 20px;
+            color: var(--global_main_color);
+            text-transform: uppercase;
+        }
+
+        section p {
+            font-size: var(--slogan_text_size_px);
+            margin: 0 0 20px;
+            line-height: 1.6;
+        }
+
+        .profile-header {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            border: 4px solid var(--global_main_color);
+            margin: 0 auto 20px;
+            box-shadow: var(--shadow-dark);
+        }
+
+        .profile-stats .service-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .profile-stats .service-item {
+            width: 300px;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff, #f0f8ff);
+            border-radius: 10px;
+            box-shadow: var(--shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-stats .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .profile-stats .service-item h4 {
+            font-size: 24px;
+            margin: 0 0 10px;
+            color: var(--global_main_color);
+        }
+
+        .profile-bio {
+            background-color: rgb(205, 238, 253);
+            text-align: left;
+            padding: 40px;
+        }
+
+        .profile-bio button {
+            background-color: var(--global_main_color);
+            color: var(--global_main_color_btn_text_color);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: var(--shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .profile-bio button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .profile-achievements .service-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .profile-achievements .service-item {
+            width: 300px;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff, #f8f9fa);
+            border-radius: 10px;
+            box-shadow: var(--shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-achievements .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .profile-achievements .service-item .image {
+            width: 100px;
+            height: 100px;
+            background-size: cover;
+            background-position: center;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            border: 3px solid var(--global_main_color);
+        }
+
+        .profile-achievements .service-item h4 {
+            font-size: 24px;
+            margin: 0 0 10px;
+            color: var(--global_main_color);
+        }
+
+        .profile-achievements .service-item p {
+            font-size: var(--slogan_text_size_px);
+            margin: 0;
+            color: #666;
+        }
+
+        footer {
+            background: var(--gradient);
+            color: var(--home_text_color);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-dark);
+            font-size: 16px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @media only screen and (min-width: 768px) {
+            :root {
+                --home_text_size_px_media: calc(var(--home_text_size) * (100vw / 1170));
+                --home_text_size_2_px_media: calc(var(--home_text_size_2) * (100vw / 1170));
+                --slogan_text_size_px_media: calc(var(--slogan_text_size) * (100vw / 1170));
+            }
+        }
+
+        @media only screen and (min-width: 480px) {
+            :root {
+                --home_text_size_px_media: calc(var(--home_text_size) * (100vw / 1170) + 8px);
+                --home_text_size_2_px_media: calc(var(--home_text_size_2) * (100vw / 1170) + 8px);
+                --slogan_text_size_px_media: calc(var(--slogan_text_size) * (100vw / 1170) + 8px);
+            }
+        }
+
+        @media only screen and (min-width: 1px) {
+            :root {
+                --home_text_size_px_media: calc(var(--home_text_size) * (100vw / 1170) + 8px);
+                --home_text_size_2_px_media: calc(var(--home_text_size_2) * (100vw / 1170) + 8px);
+                --slogan_text_size_px_media: calc(var(--slogan_text_size) * (100vw / 1170) + 8px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo-nav">
+                <img src="{% static 'images/logo.png' %}" alt="MathWars Logo" class="logo">
+                <nav>
+                    <ul>
+                        <li><a href="/ui/">Home</a></li>
+                        <li><a href="/startplaying/">Compete</a></li>
+                        <li><a href="/home/">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <h1>MathWars</h1>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="profile-header">
+                <div class="profile-avatar" style="background-image: url('{% if user.profile.avatar %}{{ user.profile.avatar.url }}{% else %}https://files.cdn-files-a.com/uploads/10532736/400_gi-67e54ca364cad.jpg{% endif %}');"></div>
+                <h2>{{ user.username }}</h2>
+                <p>Math Warrior since {{ user.date_joined|date:"F Y" }}</p>
+            </div>
+        </section>
+
+        <section class="profile-stats">
+            <h2>Battle Stats</h2>
+            <hr>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h4>Rank</h4>
+                    <p>{{ user.profile.rank|default:"Novice" }}</p>
+                </div>
+                <div class="service-item">
+                    <h4>Victories</h4>
+                    <p>{{ user.profile.victories|default:0 }}</p>
+                </div>
+                <div class="service-item">
+                    <h4>Hearts</h4>
+                    <p>{{ user.profile.hearts|default:0 }}</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="profile-bio">
+            <h3>About Me</h3>
+            <p>{{ user.profile.bio|default:"This warrior hasn't shared their story yet." }}</p>
+            <button onclick="window.location.href='/editprofile/'">Edit Profile</button>
+        </section>
+
+        <section class="profile-achievements">
+            <h2>Achievements</h2>
+            <hr>
+            <div class="service-grid">
+                {% for achievement in user.profile.achievements.all %}
+                    <div class="service-item">
+                        <div class="image" style="background-image: url('{{ achievement.icon_url }}');"></div>
+                        <h4>{{ achievement.name }}</h4>
+                        <p>{{ achievement.description }}</p>
+                    </div>
+                {% empty %}
+                    <p>No achievements yet - start competing to earn some!</p>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>MathWars 2025</p>
+    </footer>
+</body>
+</html>

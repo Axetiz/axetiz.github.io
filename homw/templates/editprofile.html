@@ -1,0 +1,263 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Edit Profile - MathWars</title>
+    <style>
+        :root {
+            --global_main_color: #045174;
+            --global_main_color_btn_text_color: #ffffff;
+            --global_main_color_rgba_02: rgba(4, 81, 116, 0.2);
+            --global_main_color_rgba_07: rgba(4, 81, 116, 0.7);
+            --home_text_color: #ffffff;
+            --home_third_background_color: #000000;
+            --home_text_size_px: 70px;
+            --home_text_size_2_px: 45px;
+            --slogan_text_size_px: 22px;
+            --home_text_size: 70;
+            --home_text_size_2: 45;
+            --slogan_text_size: 22;
+            --layout_text_align: center;
+            --layout_text_box_width: 100%;
+            --homepage_padding_top: 50px;
+            --menu_pages_side_padding: 15px;
+            --menu_text_color: #ffffff;
+            --menu_font_size: 17px;
+            --menu_pages_space: 3px;
+            --modules_color_text: #000000;
+            --sectionsPadding: 100px;
+            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --shadow-dark: 0 8px 20px rgba(0, 0, 0, 0.2);
+            --gradient: linear-gradient(135deg, #045174, #1b262c);
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-size: 14px !important;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: var(--modules_color_text);
+            background-color: #cdeefd;
+            -webkit-font-smoothing: antialiased !important;
+            -moz-osx-font-smoothing: grayscale !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: var(--gradient);
+            color: var(--menu_text_color);
+            padding: var(--menu_pages_side_padding);
+            box-shadow: var(--shadow-dark);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .logo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .logo {
+            max-height: 50px;
+        }
+
+        .logo-container h1 {
+            font-size: var(--home_text_size_px);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .logo-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 198%;
+        }
+
+        nav {
+            margin-top: 20px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 var(--menu_pages_space);
+        }
+
+        nav ul li a {
+            color: var(--menu_text_color);
+            text-decoration: none;
+            font-size: var(--menu_font_size);
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--global_main_color_rgba_07);
+            border-radius: 5px;
+        }
+
+        main {
+            padding: var(--sectionsPadding);
+            text-align: var(--layout_text_align);
+            background: linear-gradient(to bottom, #cdeefd, #fff);
+        }
+
+        .edit-section {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .edit-section h2 {
+            font-size: var(--home_text_size_2_px);
+            margin: 0 0 20px;
+            color: var(--global_main_color);
+            text-transform: uppercase;
+        }
+
+        .edit-section form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .edit-section label {
+            font-size: var(--slogan_text_size_px);
+            color: var(--modules_color_text);
+            margin-bottom: 5px;
+        }
+
+        .edit-section input[type="text"],
+        .edit-section textarea,
+        .edit-section input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--global_main_color_rgba_02);
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f8f9fa;
+            transition: border-color 0.3s ease;
+        }
+
+        .edit-section input[type="text"]:focus,
+        .edit-section textarea:focus,
+        .edit-section input[type="file"]:focus {
+            border-color: var(--global_main_color);
+            outline: none;
+        }
+
+        .edit-section textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .edit-section button {
+            background-color: var(--global_main_color);
+            color: var(--global_main_color_btn_text_color);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: var(--shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            align-self: center;
+        }
+
+        .edit-section button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        footer {
+            background: var(--gradient);
+            color: var(--home_text_color);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-dark);
+            font-size: 16px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo-nav">
+                <img src="{% static 'images/logo.png' %}" alt="MathWars Logo" class="logo">
+                <nav>
+                    <ul>
+                        <li><a href="/ui/">Home</a></li>
+                        <!-- <li><a href="/game/">Compete</a></li> -->
+                        <li><a href="/profile">Profile</a></li>
+                        <li><a href="/home/">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <h1>MathWars</h1>
+        </div>
+    </header>
+
+    <main>
+        <section class="edit-section">
+            <h2>Edit Profile</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                    <label for="id_username">Username:</label>
+                    {{ form.username }}
+                </div>
+                <div>
+                    <label for="id_avatar">Profile Photo:</label>
+                    {{ form.avatar }}
+                </div>
+                <div>
+                    <label for="id_bio">About Me:</label>
+                    {{ form.bio }}
+                </div>
+                <button type="submit='/profile/'">Save Changes</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>MathWars 2025</p>
+    </footer>
+</body>
+</html>

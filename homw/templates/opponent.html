@@ -1,0 +1,387 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>MathWars - Choose Opponent</title>
+    <style>
+        :root {
+            --global_main_color: #045174;
+            --global_main_color_btn_text_color: #ffffff;
+            --global_main_color_rgba_02: rgba(4, 81, 116, 0.2);
+            --global_main_color_rgba_07: rgba(4, 81, 116, 0.7);
+            --home_text_color: #ffffff;
+            --home_third_background_color: #000000;
+            --home_text_size_px: 70px;
+            --home_text_size_2_px: 45px;
+            --slogan_text_size_px: 22px;
+            --home_text_size: 70;
+            --home_text_size_2: 45;
+            --slogan_text_size: 22;
+            --home_text_size_px_media: 70px;
+            --home_text_size_2_px_media: 45px;
+            --slogan_text_size_px_media: 22px;
+            --layout_text_align: center;
+            --layout_text_box_width: 100%;
+            --homepage_layout_height_vh: 75vh;
+            --homepage_padding_top: 50px;
+            --homepage_padding_bottom: calc(50px + var(--homepage_layout_height_opacity_space_top) + var(--homepage_layout_height_opacity_space_bottom));
+            --homepage_layout_height_opacity_space_top: 101px;
+            --mainNavHeight: 100px;
+            --scrollHeaderSize: 80px;
+            --menu_font_size: 17px;
+            --menu_pages_space: 3px;
+            --menu_pages_side_padding: 15px;
+            --menu_text_color: #ffffff;
+            --menu_color: #1b262c;
+            --modules_color_text: #000000;
+            --sectionsPadding: 100px;
+            --home_text_top_space_1: 0px;
+            --home_text_bottom_space_1: 16px;
+            --home_text_top_space_2: 0px;
+            --home_text_bottom_space_2: 30px;
+            --c-t-a-buttons-space: 10px;
+            --font-size-clamp: clamp(1rem, 20vw, 5.8rem);
+            --font-size-title: 1.6rem;
+            --home_text_color_rgba_01: rgba(255, 255, 255, 0.1);
+            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --shadow-dark: 0 8px 20px rgba(0, 0, 0, 0.2);
+            --gradient: linear-gradient(135deg, #045174, #1b262c);
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        *:before, *:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 10px;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            font-family: sans-serif;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-size: 14px !important;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: #222;
+            color: var(--modules_color_text);
+            background: linear-gradient(to bottom, #cdeefd, #fff);
+            -webkit-font-smoothing: antialiased !important;
+            -moz-osx-font-smoothing: grayscale !important;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+            -webkit-text-stroke: 1px transparent;
+            font-size: 14px;
+            line-height: 1.42857143;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: var(--gradient);
+            color: var(--menu_text_color);
+            padding: var(--menu_pages_side_padding);
+            box-shadow: var(--shadow-dark);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        h1 {
+            margin: 20px 0;
+        }
+
+        .logo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .logo {
+            max-height: 50px;
+        }
+
+        .logo-container h1 {
+            font-size: var(--home_text_size_px);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .logo-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 250%;
+        }
+
+        nav {
+            margin-top: 20px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 var(--menu_pages_space);
+        }
+
+        nav ul li a {
+            color: var(--menu_text_color);
+            text-decoration: none;
+            font-size: var(--menu_font_size);
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--global_main_color_rgba_07);
+            border-radius: 5px;
+        }
+
+        main {
+            padding: var(--sectionsPadding);
+            text-align: var(--layout_text_align);
+            background: linear-gradient(to bottom, #cdeefd, #fff);
+        }
+
+        .opponent-selection {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-light);
+            margin-bottom: 40px;
+        }
+
+        .opponent-selection h3 {
+            font-size: var(--home_text_size_2_px);
+            margin: 0 0 20px;
+            color: var(--global_main_color);
+            text-transform: uppercase;
+        }
+
+        .opponent-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .opponent-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: var(--shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .opponent-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .opponent-item .info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .opponent-item .info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--global_main_color);
+        }
+
+        .opponent-item .info div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .opponent-item .info div span:first-child {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--global_main_color);
+        }
+
+        .opponent-item .info div span:last-child {
+            font-size: var(--slogan_text_size_px);
+            color: #666;
+        }
+
+        .opponent-item button {
+            background: var(--global_main_color);
+            color: var(--global_main_color_btn_text_color);
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: var(--shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .opponent-item button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .random-play {
+            display: flex;
+            justify-content: center;
+        }
+
+        .random-play button {
+            background: var(--global_main_color);
+            color: var(--global_main_color_btn_text_color);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: var(--shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .random-play button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        footer {
+            background: var(--gradient);
+            color: var(--home_text_color);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-dark);
+            font-size: 16px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @media only screen and (min-width: 768px) {
+            :root {
+                --home_text_size_px_media: calc(var(--home_text_size) * (100vw / 1170));
+                --home_text_size_2_px_media: calc(var(--home_text_size_2) * (100vw / 1170));
+                --slogan_text_size_px_media: calc(var(--slogan_text_size) * (100vw / 1170));
+            }
+        }
+
+        @media only screen and (min-width: 480px) {
+            :root {
+                --home_text_size_px_media: calc(var(--home_text_size) * (100vw / 1170) + 8px);
+                --home_text_size_2_px_media: calc(var(--home_text_size_2) * (100vw / 1170) + 8px);
+                --slogan_text_size_px_media: calc(var(--slogan_text_size) * (100vw / 1170) + 8px);
+            }
+        }
+
+        @media only screen and (min-width: 1px) {
+            :root {
+                --home_text_size_px_media: calc(var(--home_text_size) * (100vw / 1170) + 8px);
+                --home_text_size_2_px_media: calc(var(--home_text_size_2) * (100vw / 1170) + 8px);
+                --slogan_text_size_px_media: calc(var(--slogan_text_size) * (100vw / 1170) + 8px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo-nav">
+                <img src="{% static 'images/logo.png' %}" alt="MathWars Logo" class="logo">
+                <nav>
+                    <ul>
+                        <li><a href="/ui/">Home</a></li>
+                        <li><a href="/profile/">Profile</a></li>
+                        <li><a href="/game/">Compete</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <h1>MathWars</h1>
+        </div>
+    </header>
+
+    <main>
+        <section class="opponent-selection">
+            <h3>Choose Your Opponent</h3>
+            <div class="opponent-list">
+                <div class="opponent-item" onclick="window.location.href='/gamemenu0/'">
+                    <div class="info">
+                        <img src="{% static 'images/avatar1.png' %}" alt="Avatar">
+                        <div>
+                            <span>Alice</span>
+                            <span>Rank: 7kyu | Wins: 42</span>
+                        </div>
+                    </div>
+                    <button>Challenge</button>
+                </div>
+                <div class="opponent-item" onclick="window.location.href='/gamemenu0/'">
+                    <div class="info">
+                        <img src="{% static 'images/avatar2.png' %}" alt="Avatar">
+                        <div>
+                            <span>Bob</span>
+                            <span>Rank: 6kyu | Wins: 38</span>
+                        </div>
+                    </div>
+                    <button>Challenge</button>
+                </div>
+                <div class="opponent-item" onclick="window.location.href='/gamemenu0/'">
+                    <div class="info">
+                        <img src="{% static 'images/avatar3.png' %}" alt="Avatar">
+                        <div>
+                            <span>Charlie</span>
+                            <span>Rank: 5kyu | Wins: 50</span>
+                        </div>
+                    </div>
+                    <button>Challenge</button>
+                </div>
+            </div>
+            <div class="random-play">
+                <button onclick="window.location.href='/gamemenu0/'">Random Play</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>MathWars 2025</p>
+    </footer>
+</body>
+</html>
